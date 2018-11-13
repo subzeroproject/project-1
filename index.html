@@ -1,149 +1,437 @@
-﻿<?php
-ob_start();
-session_start();
-include_once './cauhinh/ketnoi.php';
-?>
-<html>
-    <head><title>Vietpro Shop</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <link rel="stylesheet" href="css/style.css">
-        <?php
-		if(isset($_GET['page_layout'])){
-			 switch($_GET['page_layout']){
-			  case 'danhsachtimkiem':echo '<link rel="stylesheet" href="css/danhsachtimkiem.css">';
-			     break;
-			  case 'danhsachsp':echo '<link rel="stylesheet" href="css/danhsachsp.css">';
-			     break;
-			  case 'chitietsp':echo '<link rel="stylesheet" href="css/chitietsp.css">';
-			     break;
-			  case 'giohang':echo '<link rel="stylesheet" href="css/giohang.css">';
-			     break;
-			  case 'muahang':echo '<link rel="stylesheet" href="css/muahang.css">';
-			     break;
-			  case 'hoanthanh':echo '<link rel="stylesheet" href="css/hoanthanh.css">';
-			     break;				 			  
-			 
-		   }
-		}
-		  
-		?>
-    </head>
-    <body>
-        <div class="container">
-            <!-- Header -->
-            <div id="header">
-                <div class="row">
-                 <!-- search -->
-                   <?php
-				   include_once './chucnang/timkiem/timkiem.php';
-				   ?>
-                 <!-- end search -->
-                    <!-- y-cart -->
-                   <?php
-				   include_once './chucnang/giohang/giohangcuaban.php';
-				   ?>
-                    <!-- end y-cart -->
-                </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="css/bootstrap.min.css"></script>
+<title>Trung1711 - News</title>
+<style type="text/css">
+#header{
+
+	margin:0;
+	
+}
+#top-header-inner{
+	background:#FFF;
+	
+}
+#logo h1{
+	margin:0;}
+#logo button{
+	background:#fff;
+	border-radius:0;
+	text-align:center;
+	height:50px;
+	margin:0;
+	padding:0 20px;
+	border-right:1px solid #999;
+	}	
+#logo button span{
+	background:#999;
+	}
+#body{
+	padding-top:10px;
+}
+#menu li{
+	list-style:none;
+	font-family:Tahoma, Geneva, sans-serif;
+	float:left;
+	margin-right:30px;
+	margin-top:15px;
+	margin-left:10px;
+	
+}
+#menu li h2{
+	color:#906;
+	font-size:16px;
+	font-weight:bold;
+}
+#search{
+    margin-top:28px;
+
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+hr{
+    width:100%;
+	box-shadow:0px 1px 2px 1px #333;
+	margin-top:0;
+	margin-bottom:35px;
+	
+}
+#featured{
+	padding-bottom:20px;
+}
+#featured-content{
+	padding:0;}
+#featured-content h3 a{
+	color:#000;
+	text-decoration:none;
+}
+#featured-item{
+	padding-right:0;
+	margin-bottom:15px;
+	overflow:hidden;
+}
+#featured-item h3{
+	margin:2px;}	
+#featured-item h3 a{
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	text-decoration:none;
+	}
+#featured-item img{
+	margin-right:10px;
+	padding-top:0;
+	}
+#category-item{
+	margin-top:15px;
+}
+#category-item hr{
+	width:100%;
+}
+#category-item h2{
+	margin-top:0;
+	border-bottom:2px solid #F90;
+	background-position:right;
+	background:#F90;
+}
+#category-item h2 a{
+	color:#FFF;
+	text-decoration:none;
+	margin-left:10px;
+	font-size:22px;
+	
+}	
+#category-featured-content{
+	padding:0;}
+#category-featured-content img{
+	margin-right:10px;}
+#category-featured-content h3{
+	margin:5px;
+}
+#category-featured-content h3 a{
+	color:#000;
+	text-decoration:none;
+}
+#banner h2{
+	margin-top:0;
+	border-bottom:2px solid #F90;
+	background-position:right;
+	background:#F90;
+	
+	}
+#banner h2 a{
+	color:#FFF;
+	text-decoration:none;
+	margin-left:10px;
+	font-size:22px;
+	
+}
+#right-sidebar a img{
+	margin-bottom:10px;
+}
+#popular-content h2{margin-top:0;
+	border-bottom:2px solid #F90;
+	background-position:right;
+	background:#F90;
+	}
+#popular-content h2 a{color:#FFF;
+	text-decoration:none;
+	margin-left:5px;
+	font-size:22px;
+	}
+#popular-content hr{
+	width:100%;
+	}
+@media (max-width:992px){
+#top-header{
+	padding-bottom:10px;}
+#search{
+	margin:10px 0;}	
+#menu{
+	background:#999;}
+#menu li{
+	height:40px;
+	line-height:40px;
+	float:none;;}
+#menu li a{
+	font-size:14px;
+	color:#fff;
+	text-align:center;}
+#menu li a:hover{
+	color:#333;}	
+					
+}
+@media (min-width:768px) and (max-width:992px){
+#banner img{
+	width:100%;}
+.navbar-collapse{
+	width:100%;}
+}
+
+@media (max-width:768px){
+#main-header-inner{
+	margin:0;}
+#logo{
+	padding-left:0;
+	border-bottom:1px solid #999;}	
+#featured-content img{
+	width:100%;}	
+#menu{
+	padding:0;}	
+#category-item h2{
+	margin-right:0;}	
+#featured-item{
+	padding:0;}	
+#main-footer-top-inner{
+	margin:0;}	
+#about, #fanpage, #partner, #relative{
+	padding:0;}				
+}
+</style>
+</head>
+
+<body>
+<div id="thissite">
+   <div id="header">
+      <div id="top-header" class="container">
+         <div id="top-header-inner" class="row">
+            <div id="logo" class="col-md-1 col-sm-12 col-xs-12 text-center">
+               <h1>
+                  <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#menu">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                  </button>
+                  <a href="#"><img width="100px" height="90px" src="images/4bcfd75b561a46302bd6d59759e31e8938ca22b9.ico" /></a>
+               </h1>
             </div>
-            <!-- End Header -->
-
-            <!-- Banner  -->
-            <div id="banner">
-                <div class="row">           
-                    <div id="logo" class="col-md-4 col-sm-12 col-xs-12">
-                        <h1>
-                            <a href="index.php">
-                                <img src="images/logo.png">
-                            </a>
-                        </h1>
-                    </div>
-                    <div id="ship" class="col-md-8 col-sm-12 col-xs-12">
-                        <img src="images/banner.png">
-                    </div>            
-                </div>        
+            
+            <div id="menu" class="col-md-9 col-sm-12 col-xs-12 collapse navbar-collapse">
+               <ul>
+                  <li><a href="#"><h2>Games</h2></a></li>
+                  <li><a href="#"><h2>Discord</h2></a></li>
+                  <li><a href="#"><h2>TV Series</h2></a></li>
+                  <li><a href="#"><h2>Music</h2></a></li>
+                  <li><a href="#"><h2>Food</h2></a></li>
+                  <li><a href="#"><h2>Drink</h2></a></li>
+                  <li><a href="#"><h2>Tournament</h2></a></li>
+                  <li><a href="#"><h2>Artwork</h2></a></li>
+               </ul>
             </div>
-            <!-- End Banner -->
-
-            <!-- Body -->
-            <div id="body">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                       <?php
-					   include_once './chucnang/sanpham/danhmucsanpham.php';
-					   include_once './chucnang/quangcao/quangcao.php';
-					   include_once './chucnang/thongke/thongke.php';
-					   ?>
-                       
-
-                        
-                    </div>
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                       <?php
-					   include_once './chucnang/slideshow/slideshow.php';
-					   ?>  
-
-                        <div id="main">
-                            <?php
-							if(isset($_GET['page_layout'])){
-								switch($_GET['page_layout']){
-								case 'danhsachtimkiem':
-								   include_once './chucnang/timkiem/danhsachtimkiem.php';
-								   break;
-								case 'chitietsp':
-								   include_once './chucnang/sanpham/chitietsp.php';
-								   break;
-								case 'danhsachsp':
-								   include_once './chucnang/sanpham/danhsachsp.php';
-								   break;    
-								case 'giohang':
-								   include_once './chucnang/giohang/giohang.php';
-								   break;  
-								case 'muahang':
-								   include_once './chucnang/giohang/muahang.php';
-								   break;
-								case 'hoanthanh':
-								   include_once './chucnang/giohang/hoanthanh.php';
-								   break;
-								
-								   
-							}
-							}
-							else{
-								include_once './chucnang/sanpham/sanpham.php';
-							}
-							
-							?>
+            
+            <div id="search" class="col-md-2 col-sm-12 col-xs-12 pull-right">
+               <div id="imaginary_container">
+                  <div class="input-group stylish-input-group">
+                     <input type="text" class="form-control" placeholder="Search"  />
+                        <span class="input-group-addon">
+                           <button type="submit">
+                              <span class="glyphicon glyphicon-search"></span>
+                           </button>
+                        </span>    
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <hr />
+   </div>
+   
+   <div id="body" class="container">
+      <div class="row">
+         <div id="left-content" class="col-md-8 col-sm-12 col-xs-12">
+		    <div id="featured">
+			   <div id="featured-content" class="col-md-7 col-sm-7 col-xs-12">
+			      <img class="img-responsive" src="images/esports-industry-awards-nominations (1).jpg">
+				  <h3><a href="#">THE NOW TV ESPORTS INDUSTRY AWARDS</a></h3>
+				  <p>All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.</p>
+			   </div>
+               
+               <div id="featured-item" class="col-md-5 col-sm-5 col-xs-12">
+                  <img class="pull-left" src="images/counter-strike-global-offensive - Copy.jpg" />
+                  <h3><a href="#">Valve is implementing a 'Trust Factor' for Counter-Strike: Global Offensive matchmaking</a></h3>
+               </div>
+               <div id="featured-item" class="col-md-5 col-sm-5 col-xs-12">
+                  <img class="pull-left" src="images/gLlKF24pNnI - Copy.jpg" />
+                  <h3><a href="#">" Transistor's Soundtrack ? Best tracks i have ever heard "</a></h3>
+               </div>
+               <div id="featured-item" class="col-md-5 col-sm-5 col-xs-12">
+                  <img class="pull-left" src="images/jylfuwdblg_dfszq - Copy.jpg" />
+                  <h3><a href="#">Dota 2 : 7.07 Update — The Dueling Fates</a></h3>
+               </div>
+               <div id="featured-item" class="col-md-5 col-sm-5 col-xs-12">
+                  <img class="pull-left" src="images/TWD_S3_Cover - Copy.jpg" />
+                  <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+               </div>
+               <div id="featured-item" class="col-md-5 col-sm-5 col-xs-12">
+                  <img class="pull-left" src="images/Left_4_Dead_-_Dark_Carnival_screenshot - Copy.jpg" />
+                  <h3><a href="#">Left 4 Dead 2 : Dark Carnival is the best chapter for Versus ?  </a></h3>
+               </div>
+               
+               
+			</div>
+            
+            <div id="category-item">
+                    <hr />
+                    <h2><a href="#">Discord</a></h2>
+                    <div id="category-content-item">
+                        <div id="category-featured-content" class="col-md-7 col-sm-7 col-xs-12">
+                            <img class="pull-left" src="images/esports-industry-awards-nominations (1) - Copy.jpg">
+                            <h3><a href="#">The Now TV esports industry awards </a></h3>
+                            <p>
+                            All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.
+                            </p>
                         </div>
-
-                        
+                        <div id="featured-item" class="category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/TWD_S3_Cover - Copy - 2.jpg">
+                            <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+                        </div>
+                        <div id="featured-item" class="featured-item category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/header.jpg">
+                            <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                        </div>
+                    </div>
+            </div> 
+            
+            <div id="category-item">
+                    <hr />
+                    <h2><a href="#">Discord</a></h2>
+                    <div id="category-content-item">
+                        <div id="category-featured-content" class="col-md-7 col-sm-7 col-xs-12">
+                            <img class="pull-left" src="images/esports-industry-awards-nominations (1) - Copy.jpg">
+                            <h3><a href="#">The Now TV esports industry awards </a></h3>
+                            <p>
+                            All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.
+                            </p>
+                        </div>
+                        <div id="featured-item" class="category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/TWD_S3_Cover - Copy - 2.jpg">
+                            <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+                        </div>
+                        <div id="featured-item" class="featured-item category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/header.jpg">
+                            <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                        </div>
+                    </div>
+            </div>
+            
+            <div id="category-item">
+                    <hr />
+                    <h2><a href="#">Discord</a></h2>
+                    <div id="category-content-item">
+                        <div id="category-featured-content" class="col-md-7 col-sm-7 col-xs-12">
+                            <img class="pull-left" src="images/esports-industry-awards-nominations (1) - Copy.jpg">
+                            <h3><a href="#">The Now TV esports industry awards </a></h3>
+                            <p>
+                            All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.
+                            </p>
+                        </div>
+                        <div id="featured-item" class="category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/TWD_S3_Cover - Copy - 2.jpg">
+                            <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+                        </div>
+                        <div id="featured-item" class="featured-item category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/header.jpg">
+                            <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                        </div>
+                    </div>
+            </div>
+            
+            <div id="category-item">
+                    <hr />
+                    <h2><a href="#">Discord</a></h2>
+                    <div id="category-content-item">
+                        <div id="category-featured-content" class="col-md-7 col-sm-7 col-xs-12">
+                            <img class="pull-left" src="images/esports-industry-awards-nominations (1) - Copy.jpg">
+                            <h3><a href="#">The Now TV esports industry awards </a></h3>
+                            <p>
+                            All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.
+                            </p>
+                        </div>
+                        <div id="featured-item" class="category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/TWD_S3_Cover - Copy - 2.jpg">
+                            <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+                        </div>
+                        <div id="featured-item" class="featured-item category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/header.jpg">
+                            <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                        </div>
+                    </div>
+            </div>
+            
+            <div id="category-item">
+                    <hr />
+                    <h2><a href="#">Discord</a></h2>
+                    <div id="category-content-item">
+                        <div id="category-featured-content" class="col-md-7 col-sm-7 col-xs-12">
+                            <img class="pull-left" src="images/esports-industry-awards-nominations (1) - Copy.jpg">
+                            <h3><a href="#">The Now TV esports industry awards </a></h3>
+                            <p>
+                            All your nominations have been considered and evaluated by our panel of experts and the finalists have now been announced. As the 13th judge - Their destiny is now in your hands, vote now and recognise their achievements.Our aim is to ensure that success and achievement in esports is celebrated globally, acting as an impartial entity across all platforms and titles.
+                            </p>
+                        </div>
+                        <div id="featured-item" class="category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/TWD_S3_Cover - Copy - 2.jpg">
+                            <h3><a href="#">The Walking Dead Season 3 : A New Frontier</a></h3>
+                        </div>
+                        <div id="featured-item" class="featured-item category-featured-item col-md-5 col-sm-5 col-xs-12">
+                        	<img class="pull-left" src="images/header.jpg">
+                            <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                        </div>
+                    </div>
+            </div>    
+            
+         </div>
+		 
+		 <div id="right-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+            <div id="banner">
+            <h2><a href="#">Artwork</a></h2>
+               <a href="#"><img class="img-responsive" src="images/18446688_1891919577717162_547083135976227265_n - Copy.jpg" />
+               <a href="#"><img class="img-responsive" src="images/14601011_505903329619198_1840709887811724382_n - Copy.jpg" />
+            </div>
+            
+            
+            
+            <div id="popular-content">
+            <hr />
+                	<h2><a href="#">Most popular contents</a></h2>
+                    <div id="featured-item">
+                        <img class="pull-left" src="images/header.jpg">
+                        <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                    </div>
+                    <div id="featured-item">
+                        <img class="pull-left" src="images/header.jpg">
+                        <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                    </div>
+                    <div id="featured-item">
+                        <img class="pull-left" src="images/header.jpg">
+                        <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                    </div>
+                    <div id="featured-item">
+                        <img class="pull-left" src="images/header.jpg">
+                        <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
+                    </div>
+                    <div id="featured-item">
+                        <img class="pull-left" src="images/header.jpg">
+                        <h3><a href="#">Discover the secrets of the Calamity, a surreal catastrophe that shattered the world to pieces.</a></h3>
                     </div>
                 </div>
-            </div>  
-            <!-- End Body -->
-
-            <div id="brand">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <img class="img-thumbnail" src="images/brand.png">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div id="footer">
-                <div class="row">
-                    <div id="footer-main" class="col-md-12 col-sm-12 col-xs-12">
-                        <h4>Học viện Công nghệ Vietpro - Vietpro Academy</h4>
-                        <p><b>Trụ sở chính:</b> Số B8A Ngõ 18 Võ Văn Dũng, Hoàng Cầu, Đống Đa, Hà Nội | <b>Hotline</b> 0988 550 553</p> 
-                        <p><b>Cơ sở 2:</b> Số 25 Ngõ 178/71 Tây Sơn, Đống Đa, Hà Nội | <b>Hotlin</b>e 0988 550 552</p>
-                        <p>Bản quyền thuộc Vietpro Academy</p>
-                    </div>   
-                </div>
-            </div>
-            <!-- End Footer -->
-        </div>
-    </body>
+		 </div>
+      </div>
+   </div>	 
+</div>
+</body>
 </html>
